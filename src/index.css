@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Crisp White Background for maximum pop */
+    --background: 0 0% 100%;
+    --foreground: 220 70% 15%;
+
+    /* Primary: Vibrant Crimson Red */
+    --primary: 350 75% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary: Deep Navy Blue Anchor */
+    --secondary: 220 70% 20%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Accent: Fresh Sprout Green */
+    --accent: 140 60% 40%;
+    --accent-foreground: 0 0% 100%;
+
+    /* UI Elements */
+    --card: 0 0% 100%;
+    --card-foreground: 220 70% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 70% 15%;
+
+    --muted: 220 20% 95%;
+    --muted-foreground: 220 15% 40%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 20% 85%;
+    --input: 220 20% 85%;
+    --ring: 350 75% 45%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    /* Deep slate background for dark mode */
+    --background: 220 60% 6%;
+    --foreground: 210 20% 98%;
+
+    /* Colors tuned for dark mode readability */
+    --primary: 350 80% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 40% 25%;
+    --secondary-foreground: 210 20% 98%;
+
+    --accent: 140 50% 45%;
+    --accent-foreground: 220 60% 6%;
+
+    /* UI Elements */
+    --card: 220 50% 10%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 220 50% 10%;
+    --popover-foreground: 210 20% 98%;
+
+    --muted: 220 30% 15%;
+    --muted-foreground: 210 20% 70%;
+
+    --border: 220 30% 18%;
+    --input: 220 30% 18%;
+    --ring: 350 80% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    @apply bg-primary/20 text-primary;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight text-secondary;
+  }
+  a, button {
+    @apply transition-all duration-300 ease-in-out;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-primary-foreground px-6 py-3 rounded-xl font-semibold hover:bg-red-700 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transition-all;
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground px-6 py-3 rounded-xl font-semibold hover:bg-blue-900 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transition-all;
+  }
+  
+  .btn-accent {
+    @apply bg-accent text-accent-foreground px-6 py-3 rounded-xl font-semibold hover:bg-green-700 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transition-all;
+  }
+
+  .nepali-text {
+    @apply font-nepali leading-loose text-secondary;
+  }
+  
+  .course-card {
+    @apply bg-card rounded-2xl shadow-sm overflow-hidden hover:shadow-xl hover:-translate-y-1 border border-muted transition-all duration-300;
+  }
+}

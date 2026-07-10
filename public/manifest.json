@@ -1,0 +1,68 @@
+
+{
+  "name": "EduWarn Nepal - Nepal's Premier Education Platform",
+  "short_name": "EduWarn Nepal",
+  "description": "Expert home tutoring in Kathmandu with SEE preparation, Class 10 notes, and NEB Class 12 notes. Achieve 75%+ marks guaranteed with personalized coaching.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1E2A78",
+  "theme_color": "#1E2A78",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "categories": ["education", "productivity", "lifestyle"],
+  "lang": "en-US",
+  "dir": "ltr",
+  "icons": [
+    { "src": "/team-members/d7e3fbc0-a893-42e1-b105-df7983076c31.png", "sizes": "72x72", "type": "image/png", "purpose": "any" },
+    { "src": "/team-members/d7e3fbc0-a893-42e1-b105-df7983076c31.png", "sizes": "96x96", "type": "image/png", "purpose": "any" },
+    { "src": "/team-members/d7e3fbc0-a893-42e1-b105-df7983076c31.png", "sizes": "128x128", "type": "image/png", "purpose": "any" },
+    { "src": "/team-members/d7e3fbc0-a893-42e1-b105-df7983076c31.png", "sizes": "144x144", "type": "image/png", "purpose": "any" },
+    { "src": "/team-members/d7e3fbc0-a893-42e1-b105-df7983076c31.png", "sizes": "152x152", "type": "image/png", "purpose": "any" },
+    { "src": "/team-members/d7e3fbc0-a893-42e1-b105-df7983076c31.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/team-members/d7e3fbc0-a893-42e1-b105-df7983076c31.png", "sizes": "384x384", "type": "image/png", "purpose": "any" },
+    { "src": "/team-members/d7e3fbc0-a893-42e1-b105-df7983076c31.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/team-members/d7e3fbc0-a893-42e1-b105-df7983076c31.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "screenshots": [
+    {
+      "src": "/team-members/52740389-6e5e-42aa-b4eb-29ded5fe3c02.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "EduWarn Nepal Desktop View"
+    },
+    {
+      "src": "/team-members/374cdcaf-adaf-4314-870e-e27ebade9fac.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "EduWarn Nepal Mobile View"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Find Tutors",
+      "short_name": "Tutors",
+      "description": "Browse expert tutors in Kathmandu",
+      "url": "/tutors",
+      "icons": [
+        {
+          "src": "/team-members/d7e3fbc0-a893-42e1-b105-df7983076c31.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "View Courses",
+      "short_name": "Courses",
+      "description": "Explore our courses and study materials",
+      "url": "/courses",
+      "icons": [
+        {
+          "src": "/team-members/d7e3fbc0-a893-42e1-b105-df7983076c31.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+}

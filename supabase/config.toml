@@ -1,0 +1,6 @@
+
+project_id = "lutjmweoivggmwqskdtk"
+[functions.get-admin-users]
+verify_jwt = true
+[functions.get-user-by-email]
+verify_jwt = true

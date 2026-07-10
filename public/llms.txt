@@ -1,0 +1,22 @@
+# EduWarn Nepal
+
+> Nepal's trusted home tuition and online learning platform — expert tutors for SEE preparation, Grade 11–12 (NEB), IELTS, and LokSewa, plus curated study resources.
+
+EduWarn Nepal connects students in Kathmandu and across Nepal with vetted home tutors and offers structured online courses, live programs, and study material.
+
+## Pages
+
+- [Home](/): Overview of EduWarn Nepal — services, featured programs, and enrollment.
+- [About](/about): Our mission, team, and approach to personalized tutoring.
+- [Courses](/courses): Full catalog of SEE, Grade 11–12, IELTS, LokSewa, and skill courses.
+- [Tutors](/tutors): Meet our verified instructors and request a home tutor.
+- [Programs](/programs): Live bootcamps, workshops, and community events.
+- [Blog](/blog): Study guides, exam tips, and educational articles.
+- [Contact](/contact): Reach us via phone, email, or WhatsApp.
+- [Career](/career): Apply to teach with EduWarn Nepal.
+
+## Optional
+
+- [Privacy Policy](/privacy)
+- [Terms of Service](/terms)
+- [Cookie Policy](/cookies)
