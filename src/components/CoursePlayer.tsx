@@ -1,125 +1,196 @@
-import React, { useState, useMemo } from 'react';
-import { useCourseContent, useLessonDetail, CourseLesson } from '@/hooks/useCourseContent';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import React, { useEffect, useState } from 'react';
+import { supabase } from '@/integrations/supabase/client';
 import { Skeleton } from '@/components/ui/skeleton';
-import { PlayCircle, FileText, Download } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
-interface Props {
-  courseId: string;
-}
+type Module = { id: string; title: string; sort_order?: number };
+type Lesson = { id: string; module_id: string; title: string; sort_order?: number; is_free_preview?: boolean };
+type LessonContent = { lesson_id: string; video_url?: string; content?: string; attachment_url?: string };
 
-const getEmbedUrl = (url: string): string => {
-  try {
-    const u = new URL(url);
-    if (u.hostname.includes('youtube.com')) {
-      const v = u.searchParams.get('v');
-      if (v) return `https://www.youtube.com/embed/${v}`;
-    }
-    if (u.hostname === 'youtu.be') {
-      return `https://www.youtube.com/embed${u.pathname}`;
-    }
-    if (u.hostname.includes('vimeo.com')) {
-      const id = u.pathname.split('/').filter(Boolean)[0];
-      if (id) return `https://player.vimeo.com/video/${id}`;
-    }
-  } catch {}
-  return url;
-};
+const CoursePlayer: React.FC<{ courseId: string; hasAccess?: boolean }> = ({ courseId, hasAccess = true }) => {
+  const [modules, setModules] = useState<Module[]>([]);
+  const [lessonsByModule, setLessonsByModule] = useState<Record<string, Lesson[]>>({});
+  const [contents, setContents] = useState<Record<string, LessonContent>>({});
+  const [loading, setLoading] = useState(true);
+  const [activeLessonId, setActiveLessonId] = useState<string | null>(null);
 
-const CoursePlayer: React.FC<Props> = ({ courseId }) => {
-  const { data: modules, isLoading } = useCourseContent(courseId);
-  const firstLesson = useMemo(() => {
-    for (const m of modules ?? []) for (const l of m.lessons) return l;
-    return null;
-  }, [modules]);
-  const [active, setActive] = useState<CourseLesson | null>(null);
+  useEffect(() => {
+    if (!courseId) return;
+    let mounted = true;
 
-  const current = active ?? firstLesson;
-  const canPlay = () => true; // ✅ Always allow playback
-  const { data: detail, isLoading: detailLoading } = useLessonDetail(current?.id, !!current);
+    const load = async () => {
+      setLoading(true);
 
-  if (isLoading) return <Skeleton className="h-72 w-full" />;
-  if (!modules?.length) {
-    return (
-      <div className="rounded-xl border p-6 text-center text-muted-foreground">
-        Course content coming soon. The instructor is preparing lessons.
-      </div>
-    );
-  }
+      // 1) fetch modules for course
+      const { data: mods, error: modErr } = await supabase
+        .from('course_modules')
+        .select('*')
+        .eq('course_id', courseId)
+        .order('sort_order', { ascending: true });
 
+      if (modErr) {
+        console.error('modules error', modErr);
+        setLoading(false);
+        return;
+      }
+
+      if (!mounted) return;
+      setModules(mods || []);
+
+      // 2) fetch lessons for all modules
+      const moduleIds = (mods || []).map((m: any) => m.id);
+      if (moduleIds.length === 0) {
+        setLessonsByModule({});
+        setLoading(false);
+        return;
+      }
+
+      const { data: lessons, error: lessonsErr } = await supabase
+        .from('course_lessons')
+        .select('*')
+        .in('module_id', moduleIds)
+        .order('sort_order', { ascending: true });
+
+      if (lessonsErr) {
+        console.error('lessons error', lessonsErr);
+        setLoading(false);
+        return;
+      }
+
+      const grouped: Record<string, Lesson[]> = {};
+      (lessons || []).forEach((l: Lesson) => {
+        grouped[l.module_id] = grouped[l.module_id] || [];
+        grouped[l.module_id].push(l);
+      });
+      if (!mounted) return;
+      setLessonsByModule(grouped);
+
+      // 3) fetch lesson contents for all lessons
+      const lessonIds = (lessons || []).map((l: any) => l.id);
+      if (lessonIds.length === 0) {
+        setContents({});
+        setLoading(false);
+        return;
+      }
+
+      const { data: contentsData, error: contentErr } = await supabase
+        .from('course_lesson_content')
+        .select('*')
+        .in('lesson_id', lessonIds);
+
+      if (contentErr) {
+        console.error('lesson content error', contentErr);
+        setLoading(false);
+        return;
+      }
+
+      const contentMap: Record<string, LessonContent> = {};
+      (contentsData || []).forEach((c: any) => {
+        contentMap[c.lesson_id] = c;
+      });
+
+      if (!mounted) return;
+      setContents(contentMap);
+
+      // set first lesson as active
+      const firstLesson = lessonIds[0] || null;
+      setActiveLessonId(firstLesson);
+      setLoading(false);
+    };
+
+    load();
+
+    return () => {
+      mounted = false;
+    };
+  }, [courseId]);
+
+  if (!courseId) return <div className="p-6 bg-card rounded">Invalid course</div>;
+  if (loading) return <div className="space-y-4"><Skeleton className="h-48 w-full" /><Skeleton className="h-6 w-1/2" /></div>;
+
+  // render
   return (
-    <div className="grid md:grid-cols-3 gap-6">
-      <div className="md:col-span-2 space-y-4">
-        {current ? (
-          <>
-            {detailLoading ? (
-              <Skeleton className="aspect-video w-full rounded-xl" />
-            ) : detail?.video_url ? (
-              <div className="aspect-video rounded-xl overflow-hidden bg-black">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="md:col-span-2 space-y-6">
+        {activeLessonId ? (
+          <div className="bg-card p-4 rounded">
+            {/* Video embed if YouTube short link or full URL */}
+            {contents[activeLessonId]?.video_url ? (
+              <div className="w-full aspect-video">
                 <iframe
-                  src={getEmbedUrl(detail.video_url)}
-                  title={current.title}
-                  className="w-full h-full"
-                  allowFullScreen
+                  title="lesson-video"
+                  src={convertToEmbed(contents[activeLessonId].video_url || '')}
+                  frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full rounded"
                 />
               </div>
             ) : (
-              <div className="aspect-video rounded-xl bg-muted flex items-center justify-center text-muted-foreground">
-                <FileText className="w-10 h-10" />
-              </div>
+              <div className="h-64 flex items-center justify-center text-muted-foreground">No video available</div>
             )}
-            <div>
-              <h3 className="text-xl font-bold text-primary">{current.title}</h3>
-              {detail?.content && (
-                <div className="mt-3 text-muted-foreground whitespace-pre-wrap leading-relaxed">
-                  {detail.content}
-                </div>
-              )}
-              {detail?.attachment_url && (
-                <a href={detail.attachment_url} target="_blank" rel="noreferrer">
-                  <Button variant="outline" size="sm" className="mt-4">
-                    <Download className="w-4 h-4 mr-2" /> Download materials
-                  </Button>
+
+            <div className="mt-4">
+              <div dangerouslySetInnerHTML={{ __html: contents[activeLessonId]?.content || '<p>No lesson notes.</p>' }} />
+              {contents[activeLessonId]?.attachment_url && (
+                <a href={contents[activeLessonId].attachment_url} target="_blank" rel="noreferrer" className="text-primary underline mt-3 block">
+                  Download attachment
                 </a>
               )}
             </div>
-          </>
-        ) : null}
+          </div>
+        ) : (
+          <div className="bg-card p-6 rounded">Select a lesson to start</div>
+        )}
       </div>
 
-      <div className="bg-card rounded-xl border p-4 max-h-[80vh] overflow-y-auto">
-        <h4 className="font-bold mb-3">Course Curriculum</h4>
-        <Accordion type="multiple" defaultValue={modules.map((m) => m.id)}>
-          {modules.map((m) => (
-            <AccordionItem key={m.id} value={m.id}>
-              <AccordionTrigger className="text-sm">{m.title}</AccordionTrigger>
-              <AccordionContent>
-                <ul className="space-y-1">
-                  {m.lessons.map((l) => (
-                    <li key={l.id}>
-                      <button
-                        onClick={() => setActive(l)}
-                        className={`w-full text-left text-sm p-2 rounded-md flex items-center gap-2 hover:bg-muted ${current?.id === l.id ? 'bg-muted' : ''}`}
-                      >
-                        <PlayCircle className="w-4 h-4 text-primary shrink-0" />
-                        <span className="flex-1 truncate">{l.title}</span>
-                        {l.duration_minutes ? (
-                          <span className="text-xs text-muted-foreground">{l.duration_minutes}m</span>
-                        ) : null}
-                      </button>
-                    </li>
-                  ))}
-                  {!m.lessons.length && <li className="text-xs text-muted-foreground p-2">No lessons yet</li>}
-                </ul>
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-      </div>
+      <aside className="space-y-4">
+        {modules.map((m) => (
+          <div key={m.id} className="bg-card p-4 rounded">
+            <h4 className="font-semibold mb-2">{m.title}</h4>
+            <ul className="space-y-2">
+              {(lessonsByModule[m.id] || []).map((l) => {
+                const isActive = l.id === activeLessonId;
+                return (
+                  <li key={l.id}>
+                    <button
+                      onClick={() => setActiveLessonId(l.id)}
+                      className={`w-full text-left p-2 rounded ${isActive ? 'bg-primary text-primary-foreground' : 'hover:bg-muted/50'}`}
+                    >
+                      <div className="flex justify-between items-center">
+                        <span className="font-medium">{l.title}</span>
+                        <span className="text-xs text-muted-foreground">{l.is_free_preview ? 'Preview' : ''}</span>
+                      </div>
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ))}
+      </aside>
     </div>
   );
 };
+
+// helper: convert youtu.be or youtube watch url to embed url
+function convertToEmbed(url: string) {
+  if (!url) return '';
+  try {
+    const u = new URL(url);
+    if (u.hostname.includes('youtu.be')) {
+      const id = u.pathname.slice(1);
+      return `https://www.youtube.com/embed/${id}`;
+    }
+    if (u.hostname.includes('youtube.com')) {
+      const v = u.searchParams.get('v');
+      if (v) return `https://www.youtube.com/embed/${v}`;
+      // handle /embed/ or /watch?v=
+      if (u.pathname.includes('/embed/')) return url;
+    }
+  } catch (e) {
+    // fallback: return url as-is
+  }
+  return url;
+}
 
 export default CoursePlayer;
