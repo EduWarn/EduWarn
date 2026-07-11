@@ -9,7 +9,6 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { BlogPost } from '@/types/database';
 import { toast } from 'sonner';
 import { Loader2, Edit, Trash2, Check, X, Search } from 'lucide-react';
-import ImageUploader from '@/components/ImageUploader';
 import TipTapEditor from '@/components/editor/TipTapEditor';
 
 type BlogFormData = Omit<BlogPost, 'id' | 'created_at' | 'updated_at'>;
@@ -189,11 +188,6 @@ const BlogManager = () => {
 
             <div className="space-y-2">
               <label className="text-sm font-medium">Featured Image</label>
-              <ImageUploader
-                onImageUploaded={handleImageUploaded}
-                currentImage={formData.featured_image || undefined}
-                type="blog"
-              />
             </div>
 
             <div className="flex space-x-2 pt-4">
