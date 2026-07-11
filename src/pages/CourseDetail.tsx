@@ -164,7 +164,7 @@ const CourseDetail: React.FC = () => {
             </div>
 
             {/* Sidebar */}
-            <div>
+            <div className="md:col-span-1">
               <div className="bg-card rounded-xl border p-6 sticky top-24 space-y-4">
                 <h3 className="text-lg font-bold">Course Details</h3>
                 <div className="space-y-3 text-sm">
