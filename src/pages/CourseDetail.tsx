@@ -7,7 +7,6 @@ import { Button } from '../components/ui/button';
 import { Star, Clock, Users, ArrowLeft } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'sonner';
-import LocalPaymentModal from '../components/LocalPaymentModal';
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -87,19 +86,13 @@ const CourseDetail = () => {
           provider: {
             '@type': 'EducationalOrganization',
             name: 'EduWarn Nepal',
-            sameAs: 'https://sajilotuition.lovable.app',
+            sameAs: 'https://wwww.eduwarnnepal.com',
           },
           ...(course.instructor && {
             instructor: { '@type': 'Person', name: course.instructor },
           }),
           ...(course.image_url && { image: course.image_url }),
-          offers: {
-            '@type': 'Offer',
-            price: course.discount_price && course.discount_price > 0 ? course.discount_price : course.price,
-            priceCurrency: 'NPR',
-            availability: 'https://schema.org/InStock',
-            url: `https://sajilotuition.lovable.app/course/${course.id}`,
-          },
+          
         }}
       />
       <Navbar />
@@ -131,12 +124,6 @@ const CourseDetail = () => {
               <Star size={16} fill="#FFC107" stroke="#FFC107" className="mr-2" />
               <span>{course.rating || 0} Rating</span>
             </div>
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button variant="accent" size="lg" onClick={handleEnroll}>
-              Enroll Now — Rs. {course.discount_price && course.discount_price > 0 ? course.discount_price : course.price}
-            </Button>
           </div>
         </div>
       </div>
@@ -208,34 +195,12 @@ const CourseDetail = () => {
                     </div>
                   )}
                 </div>
-                <div className="pt-4 border-t">
-                  <div className="flex items-center gap-2 mb-4">
-                    {course.discount_price && course.discount_price > 0 ? (
-                      <>
-                        <span className="text-muted-foreground line-through">Rs. {course.price}</span>
-                        <span className="text-2xl font-bold text-primary">Rs. {course.discount_price}</span>
-                      </>
-                    ) : (
-                      <span className="text-2xl font-bold text-primary">Rs. {course.price}</span>
-                    )}
-                  </div>
-                  <Button className="w-full" variant="accent" onClick={handleEnroll}>
-                    Enroll Now
-                  </Button>
-                </div>
+                
               </div>
             </div>
           </div>
         </div>
       </main>
-
-
-      <LocalPaymentModal
-        isOpen={showLocalPayment}
-        onClose={() => setShowLocalPayment(false)}
-        course={course}
-        onPaymentSubmit={() => toast.success('Payment submitted! We will verify within 24 hours.')}
-      />
 
       <Footer />
     </div>

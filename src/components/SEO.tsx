@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
 const SITE_URL = 'https://www.eduwarnnepal.com';
-const DEFAULT_IMAGE = `${SITE_URL}/team-members/eduwarn_nepal-logo.jpeg.jpeg`;
+const DEFAULT_IMAGE = `${SITE_URL}/team-members/eduwarn-logo.jpeg.jpeg`;
 
 interface SEOProps {
   title: string;

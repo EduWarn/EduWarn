@@ -8,7 +8,6 @@ import { Star, Clock, Users, BookOpen, Filter, Lock } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { usePurchases } from '@/hooks/usePurchases';
 import { toast } from 'sonner';
-import LocalPaymentModal from '../components/LocalPaymentModal';
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -225,36 +224,6 @@ const Courses = () => {
                           </div>
                           <span className="text-sm ml-1">{course.rating || 0}</span>
                         </div>
-                        
-                        <div className="mt-auto">
-                          <div className="flex items-center justify-between mb-3">
-                            <div className="flex items-center">
-                              {course.discount_price && course.discount_price > 0 ? (
-                                <>
-                                  <span className="text-gray-500 line-through text-sm">Rs. {course.price}</span>
-                                  <span className="text-primary font-bold text-lg ml-2">Rs. {course.discount_price}</span>
-                                </>
-                              ) : (
-                                <span className="text-primary font-bold text-lg">Rs. {course.price}</span>
-                              )}
-                            </div>
-                            {course.discount_price && course.discount_price > 0 && course.price > 0 && (
-                              <span className="bg-orange-100 text-orange-900 text-xs font-medium px-2 py-1 rounded">
-                                {Math.round((course.price - course.discount_price) / course.price * 100)}% OFF
-                              </span>
-                            )}
-                          </div>
-                          <div className="flex gap-2">
-                            <Button variant="default" className="w-full" onClick={() => handleCourseAccess(course.id)}>
-                              {hasPurchased(course.id) ? 'View Course' : 'Preview Course'}
-                            </Button>
-                            {!hasPurchased(course.id) && (
-                              <Button variant="accent" className="w-full" onClick={() => handleEnrollNow(course)}>
-                                Enroll Now
-                              </Button>
-                            )}
-                          </div>
-                        </div>
                       </div>
                     </div>
                   ))}
@@ -264,14 +233,6 @@ const Courses = () => {
           </div>
         </div>
       </main>
-
-      
-      <LocalPaymentModal
-        isOpen={showLocalPayment}
-        onClose={() => { setShowLocalPayment(false); setSelectedCourse(null); }}
-        course={selectedCourse}
-        onPaymentSubmit={handleLocalPaymentSubmit}
-      />
       
       <Footer />
     </div>

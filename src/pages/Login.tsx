@@ -116,7 +116,7 @@ const Login = () => {
         <div className="relative z-10 flex flex-col justify-center p-12 text-white">
           <div className="mb-8">
             <img 
-              src="/team-members/eduwarn_nepal-logo.jpeg" 
+              src="/team-members/eduwarn-logo.jpeg" 
               alt="EduWarn Nepal Logo" 
               className="h-16 w-16 rounded-xl shadow-lg mb-6"
             />
@@ -170,7 +170,7 @@ const Login = () => {
           {/* Mobile logo */}
           <div className="flex items-center gap-3 mb-8 lg:hidden">
             <img 
-              src="/team-members/eduwarn_nepal-logo.jpeg" 
+              src="/team-members/eduwarn-logo.jpeg" 
               alt="EduWarn Nepal" 
               className="h-10 w-10 rounded-lg"
             />

@@ -36,7 +36,6 @@ const AdminUsers = lazy(() => import('./pages/AdminUsers'));
 const AdminPrograms = lazy(() => import('./pages/AdminPrograms'));
 const AdminPayments = lazy(() => import('./pages/AdminPayments'));
 const AdminCourseContent = lazy(() => import('./pages/AdminCourseContent'));
-const PaymentSuccess = lazy(() => import('./pages/PaymentSuccess'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./pages/TermsOfService'));
 const CookiePolicy = lazy(() => import('./pages/CookiePolicy'));
@@ -92,7 +91,6 @@ const App: React.FC = () => {
                     <Route path="/admin/programs" element={<AdminLayout><AdminPrograms /></AdminLayout>} />
                     <Route path="/admin/payments" element={<AdminLayout><AdminPayments /></AdminLayout>} />
                     <Route path="/admin/courses/:courseId/content" element={<AdminLayout><AdminCourseContent /></AdminLayout>} />
-                    <Route path="/payment-success" element={<PaymentSuccess />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                 </Suspense>

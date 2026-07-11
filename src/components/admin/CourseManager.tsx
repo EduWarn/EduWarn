@@ -18,7 +18,6 @@ const CourseManager = () => {
   const [formData, setFormData] = useState<Partial<Course>>({
     title: '',
     description: '',
-    price: 0,
     duration: '',
     level: '',
     instructor: '',
@@ -48,7 +47,6 @@ const CourseManager = () => {
     setFormData({
       title: '',
       description: '',
-      price: 0,
       duration: '',
       level: '',
       instructor: '',
@@ -76,7 +74,6 @@ const CourseManager = () => {
       const courseData: Omit<Course, 'id' | 'created_at' | 'updated_at'> = {
         title: formData.title!,
         description: formData.description!,
-        price: formData.price || 0,
         image_url: formData.image_url,
         duration: formData.duration,
         level: formData.level,
@@ -243,19 +240,6 @@ const CourseManager = () => {
                       value={formData.title || ''}
                       onChange={handleInputChange}
                       placeholder="e.g. Complete SEE Mathematics"
-                      required
-                    />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium">Price (in Rs.)*</label>
-                    <Input
-                      name="price"
-                      type="number"
-                      value={formData.price || 0}
-                      onChange={handleInputChange}
-                      min={0}
-                      step={100}
                       required
                     />
                   </div>

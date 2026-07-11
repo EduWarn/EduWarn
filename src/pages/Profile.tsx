@@ -12,7 +12,6 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { usePurchases } from '@/hooks/usePurchases';
 import { Badge } from '@/components/ui/badge';
-import ImageUploader from '@/components/ImageUploader';
 
 interface UserProfile {
   id: string;
