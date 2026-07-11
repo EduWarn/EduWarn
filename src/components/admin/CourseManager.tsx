@@ -10,7 +10,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { toast } from 'sonner';
 import { Course } from '@/types/database';
 import { Check, Edit, Loader2, Plus, Search, Trash2, X } from 'lucide-react';
-import ImageUploader from '@/components/ImageUploader';
 
 const CourseManager = () => {
   const { courses, isLoading, createCourse, updateCourse, deleteCourse } = useAdminCourses();
@@ -291,11 +290,6 @@ const CourseManager = () => {
                 
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Course Image</label>
-                  <ImageUploader 
-                    onImageUploaded={handleImageUploaded} 
-                    currentImage={formData.image_url}
-                    type="course"
-                  />
                 </div>
                 
                 <div className="flex items-center space-x-2">

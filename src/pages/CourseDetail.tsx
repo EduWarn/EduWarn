@@ -5,22 +5,14 @@ import Footer from '../components/Footer';
 import SEO from '../components/SEO';
 import { Button } from '../components/ui/button';
 import { Star, Clock, Users, ArrowLeft } from 'lucide-react';
-import { useAuth } from '@/contexts/AuthContext';
-import { toast } from 'sonner';
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { Skeleton } from '@/components/ui/skeleton';
 import CoursePlayer from '@/components/CoursePlayer';
-import { usePurchases, hasUserPurchasedCourse } from '@/hooks/usePurchases';
 
-
-const CourseDetail = () => {
-  const { courseId } = useParams();
+const CourseDetail: React.FC = () => {
+  const { courseId } = useParams<{ courseId: string }>();
   const navigate = useNavigate();
-  const { user } = useAuth();
-  const [showLocalPayment, setShowLocalPayment] = React.useState(false);
-  const { data: purchases } = usePurchases();
-  const hasAccess = !!courseId && hasUserPurchasedCourse(purchases, courseId);
 
   const { data: course, isLoading } = useQuery({
     queryKey: ['course-detail', courseId],
@@ -36,21 +28,23 @@ const CourseDetail = () => {
     enabled: !!courseId,
   });
 
-  const handleEnroll = () => {
-    if (!user) {
-      toast.error('Please log in to enroll');
-      navigate('/login');
-      return;
-    }
-    setShowLocalPayment(true);
-  };
-
   if (isLoading) {
     return (
       <div className="min-h-screen flex flex-col">
         <Navbar />
-        <div className="bg-primary py-12"><div className="container mx-auto px-4"><Skeleton className="h-10 w-2/3 mb-4" /><Skeleton className="h-6 w-1/2" /></div></div>
-        <div className="flex-grow py-12 bg-background"><div className="container mx-auto px-4 max-w-4xl space-y-6">{[1,2,3].map(i => <Skeleton key={i} className="h-24 w-full" />)}</div></div>
+        <div className="bg-primary py-12">
+          <div className="container mx-auto px-4">
+            <Skeleton className="h-10 w-2/3 mb-4" />
+            <Skeleton className="h-6 w-1/2" />
+          </div>
+        </div>
+        <div className="flex-grow py-12 bg-background">
+          <div className="container mx-auto px-4 max-w-4xl space-y-6">
+            {[1, 2, 3].map((i) => (
+              <Skeleton key={i} className="h-24 w-full" />
+            ))}
+          </div>
+        </div>
         <Footer />
       </div>
     );
@@ -92,14 +86,12 @@ const CourseDetail = () => {
             instructor: { '@type': 'Person', name: course.instructor },
           }),
           ...(course.image_url && { image: course.image_url }),
-          
         }}
       />
       <Navbar />
 
       {/* Course Header */}
       <div className="bg-primary text-primary-foreground py-12">
-
         <div className="container mx-auto px-4">
           <Button
             variant="outline"
@@ -108,6 +100,7 @@ const CourseDetail = () => {
           >
             <ArrowLeft size={16} className="mr-2" /> Back to Courses
           </Button>
+
           <h1 className="text-3xl md:text-4xl font-bold mb-4">{course.title}</h1>
           <p className="text-lg max-w-3xl mb-6 opacity-90">{course.description}</p>
 
@@ -130,7 +123,6 @@ const CourseDetail = () => {
 
       {/* Course Content */}
       <main className="flex-grow py-12 bg-background">
-
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Main info */}
@@ -164,11 +156,11 @@ const CourseDetail = () => {
               )}
             </div>
 
+            {/* Curriculum / Player */}
             <div className="md:col-span-3 mt-6">
-              <h2 className="text-2xl font-bold text-primary mb-4">
-                {hasAccess ? 'Your Lessons' : 'Curriculum'}
-              </h2>
-              <CoursePlayer courseId={courseId!} hasAccess={hasAccess} onEnroll={handleEnroll} />
+              <h2 className="text-2xl font-bold text-primary mb-4">Curriculum</h2>
+              {/* All content is free and accessible; pass hasAccess={true} */}
+              <CoursePlayer courseId={courseId!} />
             </div>
 
             {/* Sidebar */}
@@ -178,7 +170,9 @@ const CourseDetail = () => {
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Level</span>
-                    <span className="font-medium">{course.level === 'SEE' ? 'SEE/Grade 10' : course.level ? `Grade ${course.level}` : 'All Levels'}</span>
+                    <span className="font-medium">
+                      {course.level === 'SEE' ? 'SEE/Grade 10' : course.level ? `Grade ${course.level}` : 'All Levels'}
+                    </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Subject</span>
@@ -195,7 +189,6 @@ const CourseDetail = () => {
                     </div>
                   )}
                 </div>
-                
               </div>
             </div>
           </div>
