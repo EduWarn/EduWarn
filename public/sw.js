@@ -84,8 +84,8 @@ self.addEventListener('push', (event) => {
   const data = event.data ? event.data.json() : {};
   const options = {
     body: data.body || 'You have a new notification from EduWarn Nepal!',
-    icon: '/team-members/d7e3fbc0-a893-42e1-b105-df7983076c31.png',
-    badge: '/team-members/d7e3fbc0-a893-42e1-b105-df7983076c31.png',
+    icon: '/team-members/eduwarn_nepal-logo.jpeg',
+    badge: '/team-members/eduwarn_nepal-logo.jpeg',
     vibrate: [200, 100, 200],
     data: { url: data.url || '/' },
     tag: 'sajilo-tuition-notification'

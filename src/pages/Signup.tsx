@@ -121,7 +121,7 @@ const Signup = () => {
         
         <div className="relative z-10 flex flex-col justify-center p-12 text-white">
           <div className="mb-8">
-            <img src="/team-members/d7e3fbc0-a893-42e1-b105-df7983076c31.png" alt="EduWarn Nepal Logo" className="h-16 w-16 rounded-xl shadow-lg mb-6" />
+            <img src="/team-members/eduwarn_nepal-logo.jpeg" alt="EduWarn Nepal Logo" className="h-16 w-16 rounded-xl shadow-lg mb-6" />
             <h1 className="text-4xl font-bold mb-3">EduWarn Nepal</h1>
             <p className="text-xl text-white/80">Start Your Learning Journey</p>
           </div>
@@ -155,7 +155,7 @@ const Signup = () => {
       <div className="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12 bg-background">
         <div className="max-w-md w-full">
           <div className="flex items-center gap-3 mb-8 lg:hidden">
-            <img src="/team-members/d7e3fbc0-a893-42e1-b105-df7983076c31.png" alt="EduWarn Nepal" className="h-10 w-10 rounded-lg" />
+            <img src="/team-members/eduwarn_nepal-logo.jpeg" alt="EduWarn Nepal" className="h-10 w-10 rounded-lg" />
             <span className="text-xl font-bold text-primary">EduWarn Nepal</span>
           </div>
 

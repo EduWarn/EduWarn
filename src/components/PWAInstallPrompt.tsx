@@ -59,7 +59,7 @@ const PWAInstallPrompt = () => {
         <div className="bg-gradient-to-r from-primary to-primary/85 p-4 flex items-center gap-3">
           <div className="bg-white rounded-xl p-2 shadow-md flex-shrink-0">
             <img
-              src="/team-members/d7e3fbc0-a893-42e1-b105-df7983076c31.png"
+              src="/team-members/eduwarn_nepal-logo.jpeg"
               alt="EduWarn Nepal"
               className="w-8 h-8"
             />

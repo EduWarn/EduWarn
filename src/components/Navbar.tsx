@@ -65,7 +65,7 @@ const Navbar = () => {
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3 group" aria-label="EduWarn Nepal Home">
           <img
-            src="/team-members/d7e3fbc0-a893-42e1-b105-df7983076c31.png"
+            src="/team-members/eduwarn_nepal-logo.jpeg"
             alt="EduWarn Nepal Logo"
             className="w-12 h-12 rounded-full ring-1 ring-border/50 shadow-sm transition-transform duration-300 group-hover:scale-105"
           />
