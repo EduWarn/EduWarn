@@ -30,7 +30,7 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold mb-4">EduWarn Nepal</h3>
             <p className="text-gray-300 mb-4">
-              Empowering students to achieve academic excellence through personalized coaching, home tuition in Kathmandu, and quality education for SEE preparation since 2024.
+              Making practical, engaging, and free learning accessible for students across Nepal through clear lessons, useful resources, and a modern learning experience.
             </p>
             <div className="flex space-x-4">
               {social?.facebook && <a href={social.facebook} target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-accent" aria-label="Facebook"><Facebook size={20} /></a>}

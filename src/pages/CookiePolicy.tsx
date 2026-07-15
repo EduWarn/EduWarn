@@ -7,9 +7,9 @@ const CookiePolicy = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Cookie Policy | EduWarn Nepal - Home Tuition Kathmandu</title>
-        <meta name="description" content="Learn about how EduWarn Nepal uses cookies on our website for home tuition services in Kathmandu, Nepal." />
-        <link rel="canonical" href="https://sajilotuition.com/cookie-policy" />
+        <title>Cookie Policy | EduWarn Nepal - Free Learning Platform</title>
+        <meta name="description" content="Learn about how EduWarn Nepal uses cookies to support a smoother free learning experience on our website." />
+        <link rel="canonical" href="https://eduwarnnepal.com/cookie-policy" />
       </Helmet>
       <Navbar />
       
@@ -22,7 +22,7 @@ const CookiePolicy = () => {
               <h2 className="text-xl font-bold text-primary mb-3">Introduction</h2>
               <p className="text-muted-foreground">Last updated: February 27, 2026</p>
               <p className="text-muted-foreground mt-3">
-                This Cookie Policy explains how EduWarn Nepal ("we," "our," or "us") uses cookies and similar technologies to recognize you when you visit our website at sajilotuition.com.
+                This Cookie Policy explains how EduWarn Nepal ("we," "our," or "us") uses cookies and similar technologies to recognize you when you visit our website at eduwarnnepal.com.
               </p>
             </section>
             

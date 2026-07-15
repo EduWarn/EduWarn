@@ -38,7 +38,7 @@ const About = () => {
       <div className="bg-primary text-primary-foreground py-12">
         <div className="container mx-auto px-4">
           <h1 className="text-3xl md:text-4xl font-bold mb-4">About EduWarn Nepal</h1>
-          <p className="text-lg max-w-3xl">Learn about our journey, mission, and the dedicated team behind EduWarn Nepal's success</p>
+          <p className="text-lg max-w-3xl">Learn about our journey, mission, and the dedicated team building a free, practical, and engaging learning experience for Nepal.</p>
         </div>
       </div>
 

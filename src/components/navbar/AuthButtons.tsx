@@ -47,9 +47,9 @@ const AuthButtons: React.FC<AuthButtonsProps> = ({
           variant="accent"
           onClick={redirectToZoomPortal}
           className="w-full"
-          aria-label="Join free trial class"
+          aria-label="Explore free lessons"
         >
-          Trial Class
+          Free Lessons
         </Button>
       </div>
     );
@@ -83,9 +83,9 @@ const AuthButtons: React.FC<AuthButtonsProps> = ({
         variant="accent"
         onClick={redirectToZoomPortal}
         className="animate-pulse-scale"
-        aria-label="Join free trial class"
+        aria-label="Explore free lessons"
       >
-        Trial Class
+        Free Lessons
       </Button>
     </div>
   );

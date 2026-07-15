@@ -1,16 +1,30 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Star, Clock, Users } from 'lucide-react';
+import { ArrowRight, Star, Clock, Users } from 'lucide-react';
 import { Button } from './ui/button';
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { Skeleton } from './ui/skeleton';
 
+type CourseItem = {
+  id: string;
+  title?: string;
+  description?: string;
+  image_url?: string;
+  duration?: string;
+  students_count?: number;
+  rating?: number;
+  level?: string;
+  subject?: string;
+  published?: boolean;
+  seats_left?: number;
+};
+
 const CourseSection = () => {
-  const [filter, setFilter] = useState("all");
+  const [filter, setFilter] = useState('all');
   const navigate = useNavigate();
 
-  const { data: courses = [], isLoading } = useQuery({
+  const { data: courses = [], isLoading } = useQuery<CourseItem[]>({
     queryKey: ['courses-published'],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -20,49 +34,47 @@ const CourseSection = () => {
         .order('created_at', { ascending: false })
         .limit(8);
       if (error) throw error;
-      return data;
+      return (data || []) as CourseItem[];
     },
   });
 
   const filteredCourses =
-    filter === "all"
+    filter === 'all'
       ? courses
-      : courses.filter(course => course.level === filter || course.subject === filter);
+      : courses.filter((course: CourseItem) => course.level === filter || course.subject === filter);
 
   return (
     <div className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-            Our Featured Courses
+            Free Courses & Learning Paths
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Designed by expert educators to help students excel in their academics and competitive exams
+            Discover practical, engaging lessons designed to help students learn with confidence—at no cost.
           </p>
         </div>
 
-        {/* Filter buttons */}
         <div className="flex flex-wrap justify-center gap-3 mb-10">
-          {["all", "SEE", "11", "12"].map((f) => (
+          {['all', 'SEE', '11', '12'].map((f) => (
             <button
               key={f}
               onClick={() => setFilter(f)}
               className={`px-4 py-2 rounded-full ${
                 filter === f
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-muted text-muted-foreground hover:bg-muted/80"
+                  ? 'bg-primary text-primary-foreground'
+                  : 'bg-muted text-muted-foreground hover:bg-muted/80'
               }`}
             >
-              {f === "all" ? "All Courses" : f === "SEE" ? "SEE/Grade 10" : `Grade ${f}`}
+              {f === 'all' ? 'All Courses' : f === 'SEE' ? 'SEE/Grade 10' : `Grade ${f}`}
             </button>
           ))}
         </div>
 
-        {/* Loading skeleton */}
         {isLoading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="bg-card rounded-xl overflow-hidden shadow-lg border">
+              <div key={i} className="bg-card rounded-2xl overflow-hidden shadow-sm border border-border/60">
                 <Skeleton className="w-full h-48" />
                 <div className="p-5 space-y-3">
                   <Skeleton className="h-5 w-3/4" />
@@ -79,30 +91,36 @@ const CourseSection = () => {
           </p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredCourses.map((course) => (
-              <div key={course.id} className="course-card flex flex-col h-full relative">
+            {filteredCourses.map((course: CourseItem) => (
+              <div
+                key={course.id}
+                role="button"
+                tabIndex={0}
+                onClick={() => navigate(`/course/${course.id}`)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    navigate(`/course/${course.id}`);
+                  }
+                }}
+                className="group course-card flex flex-col h-full relative bg-card rounded-2xl overflow-hidden shadow-sm border border-border/60 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 cursor-pointer"
+              >
                 <div className="relative">
                   <img
                     src={
                       course.image_url ||
-                      `https://placehold.co/600x400/1E2A78/FFFFFF?text=${encodeURIComponent(course.title)}`
+                      `https://placehold.co/600x400/1E2A78/FFFFFF?text=${encodeURIComponent(course.title || 'Course')}`
                     }
-                    alt={course.title}
-                    className="w-full h-48 object-cover cursor-pointer"
-                    onClick={() => navigate(`/course/${course.id}`)}
+                    alt={course.title || 'Course'}
+                    className="w-full h-48 object-cover"
                   />
-                  {(course.seats_left ?? 10) <= 5 && (
-                    <div className="absolute top-3 right-3 bg-red-700 text-white text-xs font-medium px-2 py-1 rounded-full">
-                      Only {course.seats_left} seats left!
-                    </div>
-                  )}
+                  <div className="absolute top-3 right-3 bg-emerald-600 text-white text-xs font-medium px-2 py-1 rounded-full">
+                    Free to explore
+                  </div>
                 </div>
 
                 <div className="p-5 flex flex-col flex-grow">
-                  <h3
-                    className="text-lg font-semibold text-primary mb-2 cursor-pointer hover:underline"
-                    onClick={() => navigate(`/course/${course.id}`)}
-                  >
+                  <h3 className="text-lg font-semibold text-primary mb-2 group-hover:underline">
                     {course.title}
                   </h3>
                   <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
@@ -122,7 +140,7 @@ const CourseSection = () => {
                         <Star
                           key={i}
                           size={16}
-                          fill={i < Math.floor(course.rating || 0) ? "#FFC107" : "none"}
+                          fill={i < Math.floor(course.rating || 0) ? '#FFC107' : 'none'}
                           stroke="#FFC107"
                         />
                       ))}
@@ -130,19 +148,13 @@ const CourseSection = () => {
                     <span className="text-sm ml-1">{course.rating || 0}</span>
                   </div>
 
-                  {/* Always free */}
-                  <div className="mt-auto">
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-primary font-bold text-lg">Free</span>
+                  <div className="mt-auto flex items-center justify-between pt-3 border-t border-border/60">
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.2em] text-primary/70">Open course</p>
+                      <p className="text-sm text-muted-foreground">Browse lessons instantly</p>
                     </div>
-                    <div className="flex gap-2">
-                      <Button
-                        variant="default"
-                        className="w-full"
-                        onClick={() => navigate(`/course/${course.id}`)}
-                      >
-                        View Course
-                      </Button>
+                    <div className="flex items-center text-sm font-medium text-primary">
+                      Explore <ArrowRight size={16} className="ml-1 transition-transform group-hover:translate-x-1" />
                     </div>
                   </div>
                 </div>

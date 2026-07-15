@@ -7,8 +7,8 @@ const TermsOfService = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Terms of Service | EduWarn Nepal - Home Tuition Kathmandu</title>
-        <meta name="description" content="Read the terms of service for EduWarn Nepal. Understand our policies for home tuition services, course enrollment, and payments in Kathmandu." />
+        <title>Terms of Service | EduWarn Nepal - Free Learning Platform</title>
+        <meta name="description" content="Read the terms of service for EduWarn Nepal. Understand our policies for free learning resources, open courses, and community use." />
         <link rel="canonical" href="https://eduwarnnepal.com/terms-of-service" />
       </Helmet>
       <Navbar />
@@ -41,9 +41,9 @@ const TermsOfService = () => {
             </section>
             
             <section>
-              <h2 className="text-xl font-bold text-primary mb-3">Course Enrollment and Payment</h2>
+              <h2 className="text-xl font-bold text-primary mb-3">Free Access and Community Use</h2>
               <p className="text-muted-foreground">
-                By enrolling in a course, you agree to pay the specified fees. All payments are non-refundable except as expressly set forth in our Refund Policy. Prices are subject to change at any time.
+                Many of our learning resources are available free of charge. You may use our public courses and study materials for personal learning, provided you follow our community guidelines and do not misuse the platform.
               </p>
             </section>
             

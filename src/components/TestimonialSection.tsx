@@ -29,10 +29,10 @@ const TestimonialSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-            Student Success Stories
+            Learning stories from our community
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Hear from our students who transformed their academic performance with our guidance
+            Hear from students who found practical, engaging support through our free learning resources.
           </p>
         </div>
         
@@ -89,12 +89,12 @@ const TestimonialSection = () => {
         )}
         
         <div className="mt-12 text-center">
-          <p className="text-lg text-primary mb-6">Join hundreds of successful students who achieved their academic goals with us</p>
+          <p className="text-lg text-primary mb-6">Join students who are learning with more clarity, more confidence, and more freedom.</p>
           <Button 
             className="bg-secondary text-secondary-foreground hover:bg-secondary/90"
             onClick={scrollToTop}
           >
-            Enroll Now
+            Explore Free Courses
           </Button>
         </div>
       </div>

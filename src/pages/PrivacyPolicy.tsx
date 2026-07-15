@@ -7,9 +7,9 @@ const PrivacyPolicy = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Privacy Policy | EduWarn Nepal - Home Tuition Kathmandu</title>
-        <meta name="description" content="Read EduWarn Nepal's privacy policy. Learn how we collect, use, and protect your personal information for home tuition services in Kathmandu." />
-        <link rel="canonical" href="https://sajilotuition.com/privacy-policy" />
+        <title>Privacy Policy | EduWarn Nepal - Free Learning Platform</title>
+        <meta name="description" content="Read EduWarn Nepal's privacy policy. Learn how we collect, use, and protect your personal information while you access free learning resources." />
+        <link rel="canonical" href="https://eduwarnnepal.com/privacy-policy" />
       </Helmet>
       <Navbar />
       
@@ -22,7 +22,7 @@ const PrivacyPolicy = () => {
               <h2 className="text-xl font-bold text-primary mb-3">Introduction</h2>
               <p className="text-muted-foreground">Last updated: February 27, 2026</p>
               <p className="text-muted-foreground mt-3">
-                EduWarn Nepal ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how your personal information is collected, used, and disclosed by EduWarn Nepal when you use our website (sajilotuition.com) and our services.
+                EduWarn Nepal ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how your personal information is collected, used, and disclosed by EduWarn Nepal when you use our website (eduwarnnepal.com) and our services.
               </p>
               <p className="text-muted-foreground mt-3">
                 By accessing or using our services, you signify that you have read, understood, and agree to our collection, storage, use, and disclosure of your personal information as described in this Privacy Policy.
@@ -32,12 +32,11 @@ const PrivacyPolicy = () => {
             <section>
               <h2 className="text-xl font-bold text-primary mb-3">Information We Collect</h2>
               <p className="text-muted-foreground">
-                We collect information that you provide directly to us when you register for an account, enroll in courses, participate in interactive features of our service, submit information, communicate with us, or otherwise use our services.
+                We collect information that you provide directly to us when you create an account, contact us, participate in interactive features of our service, submit information, or otherwise use our free learning resources.
               </p>
               <ul className="list-disc pl-6 mt-2 text-muted-foreground">
                 <li>Contact information (such as name, email address, phone number)</li>
                 <li>Account information (such as educational background, login credentials)</li>
-                <li>Payment information</li>
                 <li>Course preferences and educational interests</li>
                 <li>Communications you send to us</li>
               </ul>

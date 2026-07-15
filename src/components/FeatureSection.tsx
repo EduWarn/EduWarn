@@ -13,12 +13,12 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 const defaultFeatures = [
-  { icon: 'Award', title: 'Expert Teachers', description: 'Learn from experienced educators with proven track records of student success' },
-  { icon: 'BookOpen', title: 'Comprehensive Material', description: 'Access complete study materials, notes, question banks and practice tests' },
-  { icon: 'TrendingUp', title: 'Performance Tracking', description: 'Monitor your progress with detailed analytics and improvement metrics' },
-  { icon: 'Users', title: 'Small Batch Size', description: 'Personalized attention with limited students per class for better learning' },
-  { icon: 'CheckCircle', title: 'Guaranteed Results', description: 'Our structured approach ensures excellent academic performance' },
-  { icon: 'Calendar', title: 'Flexible Schedule', description: 'Choose from multiple batches to fit your convenience and learning pace' },
+  { icon: 'Award', title: 'Free, practical lessons', description: 'Learn through clear concepts, guided study paths, and useful resources at no cost.' },
+  { icon: 'BookOpen', title: 'Rich study materials', description: 'Access notes, downloadable content, and structured learning support in one place.' },
+  { icon: 'TrendingUp', title: 'Visible progress', description: 'Follow your learning journey with step-by-step lessons and easy-to-navigate content.' },
+  { icon: 'Users', title: 'Community support', description: 'Learn in a welcoming space that encourages curiosity, consistency, and growth.' },
+  { icon: 'CheckCircle', title: 'Built for confidence', description: 'Our approach helps students learn with clarity and feel more prepared for exams.' },
+  { icon: 'Calendar', title: 'Learn at your pace', description: 'Explore lessons whenever you want and revisit topics whenever you need to.' },
 ];
 
 const FeatureCard = ({ feature, index }: { feature: { icon: string; title: string; description: string }; index: number }) => {
@@ -89,13 +89,13 @@ const FeatureSection = () => {
 
         <div className="mt-16 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-xl p-8 shadow-inner text-center">
           <h3 className="text-2xl font-bold text-primary mb-4">
-            {c?.guarantee_title || 'SEE 75%+ Marks Guarantee'}
+            {c?.guarantee_title || 'A better way to learn for free'}
           </h3>
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            {c?.guarantee_description || "We're so confident in our teaching methodology that we guarantee a minimum of 75% marks in your SEE exams or get your money back."}
+            {c?.guarantee_description || "We believe practical education should be open to everyone. That is why we focus on clear lessons, useful resources, and a learning experience that feels engaging and worth returning to."}
           </p>
           <Button variant="accent" className="inline-flex items-center px-6 py-3 rounded-lg font-bold cursor-pointer" onClick={scrollToTop}>
-            <span>Start Your Success Journey Today!</span>
+            <span>Start Learning for Free</span>
           </Button>
         </div>
       </div>

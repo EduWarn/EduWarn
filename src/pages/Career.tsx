@@ -102,9 +102,9 @@ const Career = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Career Guidance Nepal | SEE & NEB Career Paths | EduWarn Nepal</title>
-        <meta name="description" content="Get personalized career guidance for SEE, Grade 11, and Grade 12 students in Nepal. Discover the best career paths based on your interests and skills." />
-        <link rel="canonical" href="https://sajilotuition.com/career" />
+        <title>Career Guidance Nepal | Free Learning & Future Paths | EduWarn Nepal</title>
+        <meta name="description" content="Get personalized career guidance and explore practical learning paths for SEE, Grade 11, and Grade 12 students in Nepal." />
+        <link rel="canonical" href="https://eduwarnnepal.com/career" />
       </Helmet>
       <Navbar />
       
@@ -118,11 +118,11 @@ const Career = () => {
             </div>
             <div>
               <h1 className="text-3xl md:text-4xl font-bold">Career Guidance</h1>
-              <p className="text-white/80">Find your perfect career path</p>
+              <p className="text-white/80">Explore your future with practical, free learning support</p>
             </div>
           </div>
           <p className="text-lg text-white/90 max-w-2xl mt-2">
-            Get personalized career recommendations based on your interests, academic level, and skills. Designed specifically for Nepali students.
+            Get personalized career recommendations and learn how free, practical resources can support your growth as a Nepali student.
           </p>
         </div>
       </div>

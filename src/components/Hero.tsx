@@ -25,33 +25,33 @@ interface EducationOffering {
 
 const educationOfferings: EducationOffering[] = [
   {
-    title: "Achieve SEE 75%+ Marks",
-    subtitle: "Guaranteed",
-    description: "Join EduWarn Nepal for personalized SEE preparation that delivers results. Expert teachers, proven methods, and supportive environment.",
-    buttonText: "Free SEE Trial Class",
-    nepaliText: "SEE को लागी निःशुल्क कक्षा को लागी आजै साइन अप गर्नुहोस्",
+    title: "Free SEE Learning",
+    subtitle: "Open for all",
+    description: "Explore practical SEE lessons, notes, and study resources without paying a fee.",
+    buttonText: "Explore Free Lessons",
+    nepaliText: "SEE को निःशुल्क सिकाइ सुरु गर्नुहोस्",
     gradeOptions: [
       { value: "grade-9", label: "Grade 9" },
       { value: "grade-10", label: "Grade 10 (SEE)" }
     ]
   },
   {
-    title: "Master +2 Level",
-    subtitle: "Excellence",
-    description: "Comprehensive +2 preparation with specialized coaching for Science, Management, and Humanities streams. Build your foundation for higher studies.",
-    buttonText: "Free +2 Trial Class",
-    nepaliText: "+2 को लागी निःशुल्क कक्षा को लागी आजै साइन अप गर्नुहोस्",
+    title: "Practical +2 Study Paths",
+    subtitle: "Free access",
+    description: "Build your foundation in Science, Management, and Humanities with clear lessons and downloadable resources.",
+    buttonText: "Explore +2 Courses",
+    nepaliText: "+2 को निःशुल्क सिकाइ सुरु गर्नुहोस्",
     gradeOptions: [
       { value: "grade-11", label: "Grade 11" },
       { value: "grade-12", label: "Grade 12" }
     ]
   },
   {
-    title: "Excel in Grade 8",
-    subtitle: "Foundation",
-    description: "Strong foundation building for Grade 8 students. Prepare for higher grades with conceptual clarity and practical problem-solving skills.",
-    buttonText: "Free Grade 8 Trial",
-    nepaliText: "कक्षा ८ को लागी निःशुल्क कक्षा को लागी आजै साइन अप गर्नुहोस्",
+    title: "Fun Learning for Grade 8",
+    subtitle: "Build strong basics",
+    description: "Make learning feel lighter and more engaging with step-by-step lessons and practical examples.",
+    buttonText: "Open Grade 8 Lessons",
+    nepaliText: "कक्षा ८ को निःशुल्क सिकाइ सुरु गर्नुहोस्",
     gradeOptions: [
       { value: "grade-6", label: "Grade 6" },
       { value: "grade-7", label: "Grade 7" },
@@ -59,22 +59,22 @@ const educationOfferings: EducationOffering[] = [
     ]
   },
   {
-    title: "IELTS Score 7+",
-    subtitle: "Guaranteed",
-    description: "Achieve your dream IELTS score with expert guidance. Comprehensive preparation for all four modules with proven strategies.",
-    buttonText: "Free IELTS Trial",
-    nepaliText: "IELTS को लागी निःशुल्क कक्षा को लागी आजै साइन अप गर्नुहोस्",
+    title: "Free IELTS Practice",
+    subtitle: "Skill-first",
+    description: "Strengthen your English with practical lessons designed to build confidence for real exam situations.",
+    buttonText: "Explore IELTS Lessons",
+    nepaliText: "IELTS को निःशुल्क अभ्यास सुरु गर्नुहोस्",
     gradeOptions: [
       { value: "ielts-basic", label: "IELTS Basic" },
       { value: "ielts-advanced", label: "IELTS Advanced" }
     ]
   },
   {
-    title: "LokSewa Success",
-    subtitle: "Assured",
-    description: "Complete preparation for Lok Sewa Aayog exams. Current affairs, general knowledge, and subject-specific coaching by experienced faculty.",
-    buttonText: "Free LokSewa Trial",
-    nepaliText: "लोकसेवा को लागी निःशुल्क कक्षा को लागी आजै साइन अप गर्नुहोस्",
+    title: "Free LokSewa Preparation",
+    subtitle: "Practical guidance",
+    description: "Learn with structured notes, current affairs support, and study resources that make preparation easier.",
+    buttonText: "Open LokSewa Resources",
+    nepaliText: "लोकसेवा को निःशुल्क तयारी सुरु गर्नुहोस्",
     gradeOptions: [
       { value: "loksewa-officer", label: "Officer Level" },
       { value: "loksewa-assistant", label: "Assistant Level" },
@@ -124,8 +124,8 @@ const Hero = () => {
     setTimeout(() => setIsPaused(false), 10000);
   };
 
-  const scrollToForm = () => {
-    formRef.current?.scrollIntoView({ behavior: 'smooth' });
+  const browseCourses = () => {
+    window.location.assign('/courses');
   };
   
 
@@ -191,21 +191,21 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <button 
                 className="bg-amber-500 hover:bg-amber-600 text-foreground font-bold py-3 px-6 rounded-md transition-all duration-300"
-                onClick={scrollToForm}
+                onClick={browseCourses}
               >
-                <span className="uppercase">Enroll Now</span>
+                <span className="uppercase">{currentOffering.buttonText}</span>
               </button>
               <button 
                 className="bg-background hover:bg-muted text-primary font-medium py-3 px-6 rounded-md transition-all duration-300"
-                onClick={scrollToForm}
+                onClick={browseCourses}
               >
                 <span className="nepali-text">{currentOffering.nepaliText}</span>
               </button>
             </div>
             
             <div className="mt-8 bg-white/10 p-4 rounded-lg backdrop-blur-sm border border-white/20">
-              <p className="text-amber-400 font-bold">🔥 Limited Time Offer!</p>
-              <p className="text-sm mt-1">50% discount on all courses. <span className="font-bold">Only 5 seats left!</span></p>
+              <p className="text-amber-400 font-bold">🌟 Free learning, made practical</p>
+              <p className="text-sm mt-1">No fees, no barriers, just clear lessons and useful resources.</p>
             </div>
 
             {/* Progress indicators for offerings */}
@@ -225,7 +225,7 @@ const Hero = () => {
           
           <div className="md:w-1/2 md:pl-12" ref={formRef}>
             <div className="bg-white p-6 rounded-xl shadow-xl">
-              <h3 className="text-primary text-xl font-bold mb-4">Quick Enrollment</h3>
+              <h3 className="text-primary text-xl font-bold mb-4">Start learning for free</h3>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="space-y-4">
                   <div>
@@ -296,7 +296,7 @@ const Hero = () => {
                     className="w-full bg-secondary text-white hover:bg-secondary/90 py-3"
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? "Submitting..." : "Submit"}
+                    {isSubmitting ? "Opening courses..." : "Explore free lessons"}
                   </Button>
                 </div>
               </form>

@@ -91,10 +91,10 @@ const BlogPost = () => {
             name: 'EduWarn Nepal',
             logo: {
               '@type': 'ImageObject',
-              url: 'https://sajilotuition.lovable.app/team-members/eduwarn-logo.jpeg',
+              url: 'https://eduwarnnepal.com/team-members/eduwarn-logo.jpeg',
             },
           },
-          mainEntityOfPage: `https://sajilotuition.lovable.app/blog/${post.slug}`,
+          mainEntityOfPage: `https://eduwarnnepal.com/blog/${post.slug}`,
         }}
       />
       <Navbar />

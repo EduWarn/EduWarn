@@ -65,14 +65,14 @@ const Contact = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Contact EduWarn Nepal | Home Tuition in Kathmandu | SEE Preparation</title>
-        <meta name="description" content="Contact EduWarn Nepal for expert home tutoring in Kathmandu." />
+        <title>Contact EduWarn Nepal | Free Learning & Study Support</title>
+        <meta name="description" content="Contact EduWarn Nepal for free learning support, study resources, and practical education guidance." />
       </Helmet>
       <Navbar />
       <div className="bg-primary text-white py-12">
         <div className="container mx-auto px-4">
           <h1 className="text-3xl md:text-4xl font-bold mb-4">Contact Us</h1>
-          <p className="text-lg max-w-2xl">Get in touch with our team for inquiries, support, home tuition in Kathmandu, or to schedule a consultation for SEE preparation</p>
+          <p className="text-lg max-w-2xl">Get in touch with our team for free learning support, course guidance, or questions about our practical study resources.</p>
         </div>
       </div>
 
