@@ -13,10 +13,10 @@ const Programs: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Programs & Events | EduWarn Nepal</title>
+        <title>Educational Programs & Workshops in Nepal | SEE & Grade 11-12 Learning Paths</title>
         <meta
           name="description"
-          content="Discover bootcamps, workshops, seminars and events conducted by EduWarn Nepal for students, parents and aspirants across Nepal."
+          content="Explore structured educational programs and workshops at EduWarn Nepal for SEE, Grade 11-12, IELTS, and LokSewa exam preparation with expert tutors."
         />
         <link rel="canonical" href="https://eduwarnnepal.com/programs" />
       </Helmet>

@@ -20,8 +20,8 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <SEO
-        title="EduWarn Nepal — Free, Practical & Fun Learning in Nepal"
-        description="Explore free, practical, and engaging learning resources for SEE, Grade 11–12, IELTS, and LokSewa with EduWarn Nepal."
+        title="Home Tuition in Nepal | Free Online Courses & Tutors | EduWarn Nepal"
+        description="Find verified home tutors and free online courses for SEE, Grade 11–12, IELTS, and LokSewa exam preparation in Nepal. Learn from experienced educators."
         path="/"
       />
       <Navbar />
@@ -29,10 +29,10 @@ const Index = () => {
         <Hero />
         <FeatureSection />
         <Suspense fallback={<SectionFallback />}>
+          <TestimonialSection />
           <CourseSection />
           <ProgramsShowcase />
           <YouTubeShowcase />
-          <TestimonialSection />
           <CallToAction />
         </Suspense>
       </main>

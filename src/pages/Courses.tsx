@@ -67,8 +67,8 @@ const Courses: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <SEO
-        title="Courses — SEE, Grade 11–12, IELTS & LokSewa | EduWarn Nepal"
-        description="Browse EduWarn Nepal's full course catalog: SEE prep, Grade 11–12 NEB, IELTS, LokSewa, and skill courses taught by expert instructors."
+        title="Online Courses in Nepal | SEE, Grade 11-12, IELTS, LokSewa Free Learning"
+        description="Free online courses in Nepal for SEE board, Grade 11-12 NEB, IELTS preparation, and LokSewa exams. Learn from expert tutors at EduWarn Nepal."
         path="/courses"
       />
       <Navbar />

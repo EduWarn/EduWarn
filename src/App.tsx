@@ -22,6 +22,9 @@ const Courses = lazy(() => import('./pages/Courses'));
 const Programs = lazy(() => import('./pages/Programs'));
 const CourseDetail = lazy(() => import('./pages/CourseDetail'));
 const Contact = lazy(() => import('./pages/Contact'));
+const TutorApplication = lazy(() => import('./pages/TutorApplication'));
+const PartnershipForm = lazy(() => import('./pages/PartnershipForm'));
+const Donation = lazy(() => import('./pages/Donation'));
 const Login = lazy(() => import('./pages/Login'));
 const Signup = lazy(() => import('./pages/Signup'));
 const Unauthorized = lazy(() => import('./pages/Unauthorized'));
@@ -75,6 +78,9 @@ const App: React.FC = () => {
                     <Route path="/programs" element={<Programs />} />
                     <Route path="/course/:courseId" element={<CourseDetail />} />
                     <Route path="/contact" element={<Contact />} />
+                    <Route path="/tutor-application" element={<TutorApplication />} />
+                    <Route path="/partnership" element={<PartnershipForm />} />
+                    <Route path="/donate" element={<Donation />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/privacy" element={<PrivacyPolicy />} />

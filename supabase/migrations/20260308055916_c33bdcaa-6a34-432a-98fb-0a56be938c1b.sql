@@ -1,1 +1,0 @@
-ALTER TABLE public.contacts ENABLE ROW LEVEL SECURITY;

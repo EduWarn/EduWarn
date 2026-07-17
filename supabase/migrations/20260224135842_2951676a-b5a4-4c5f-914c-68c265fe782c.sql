@@ -1,9 +1,0 @@
-
--- Seed sample courses matching the original hardcoded data
-INSERT INTO public.courses (title, description, price, discount_price, rating, students_count, level, subject, duration, seats_left, published, image_url, instructor) VALUES
-('SEE Mathematics Complete Course', 'Master all math concepts required for SEE examination with practical examples and problem-solving techniques.', 8000, 6000, 4.8, 235, 'SEE', 'Mathematics', '3 months', 5, true, 'https://placehold.co/600x400/1E2A78/FFFFFF?text=Mathematics', 'Ramesh Sharma'),
-('SEE Science Full Preparation', 'Comprehensive science course covering physics, chemistry and biology with lab experiments and exam strategies.', 9000, 7500, 4.7, 198, 'SEE', 'Science', '4 months', 3, true, 'https://placehold.co/600x400/1E2A78/FFFFFF?text=Science', 'Bikash Thapa'),
-('Grade 11 Physics Foundation', 'Build a strong foundation in physics concepts with practical applications and problem-solving approach.', 7500, 6500, 4.9, 142, '11', 'Physics', '4 months', 8, true, 'https://placehold.co/600x400/1E2A78/FFFFFF?text=Physics', 'Arun Paudel'),
-('Grade 12 Chemistry Advanced', 'Advanced chemistry concepts for NEB Grade 12 students with organic, inorganic and physical chemistry coverage.', 8500, 7000, 4.6, 167, '12', 'Chemistry', '5 months', 10, true, 'https://placehold.co/600x400/1E2A78/FFFFFF?text=Chemistry', 'Sita Adhikari'),
-('SEE English Language Mastery', 'Improve your English reading, writing, and comprehension skills for the SEE examination.', 6000, 4500, 4.5, 312, 'SEE', 'English', '3 months', 15, true, 'https://placehold.co/600x400/1E2A78/FFFFFF?text=English', 'Asmita Karki'),
-('Grade 11 Mathematics', 'Complete Grade 11 mathematics course covering sets, functions, trigonometry, coordinate geometry and more.', 7000, 5500, 4.7, 189, '11', 'Mathematics', '4 months', 12, true, 'https://placehold.co/600x400/1E2A78/FFFFFF?text=Math+11', 'Ramesh Sharma');

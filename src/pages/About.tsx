@@ -8,6 +8,7 @@ import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useSectionContent } from '@/hooks/useSectionContent';
+import { Helmet } from 'react-helmet-async';
 
 const About = () => {
   const { data: teamMembers = [], isLoading } = useQuery({
@@ -17,6 +18,7 @@ const About = () => {
         .from('team_members')
         .select('*')
         .eq('published', true)
+        .eq('role', 'team_member')
         .order('display_order', { ascending: true });
       if (error) throw error;
       return data;
@@ -33,6 +35,10 @@ const About = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>About EduWarn Nepal | Free Home Tuition & Online Learning Platform</title>
+        <meta name="description" content="Learn about EduWarn Nepal's mission to provide free, practical home tuition and online courses for SEE, Grade 11-12, IELTS, and LokSewa exam preparation in Nepal." />
+      </Helmet>
       <Navbar />
 
       <div className="bg-primary text-primary-foreground py-12">

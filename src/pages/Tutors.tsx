@@ -14,12 +14,13 @@ import { Skeleton } from '@/components/ui/skeleton';
 const Tutors = () => {
   const navigate = useNavigate();
   const { data: tutors = [], isLoading } = useQuery({
-    queryKey: ['team-members'],
+    queryKey: ['tutors'],
     queryFn: async () => {
       const { data, error } = await supabase
         .from('team_members')
         .select('*')
         .eq('published', true)
+        .eq('role', 'tutor')
         .order('display_order', { ascending: true });
       if (error) throw error;
       return data;
@@ -42,8 +43,8 @@ const Tutors = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <SEO
-        title="Our Tutors — Verified Home Tutors in Nepal | EduWarn Nepal"
-        description="Meet our vetted home tutors and instructors for SEE, Grade 11–12, IELTS, and LokSewa. Request a call or apply to join our team."
+        title="Home Tutors in Nepal | Expert Teachers for SEE, Grade 11-12, IELTS, LokSewa"
+        description="Find verified home tutors in Nepal for private tuition. Expert educators for SEE, Grade 11-12, IELTS, LokSewa preparation. Request a tutor or apply to teach."
         path="/tutors"
       />
       <Navbar />

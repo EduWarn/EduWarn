@@ -65,8 +65,8 @@ const Contact = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Contact EduWarn Nepal | Free Learning & Study Support</title>
-        <meta name="description" content="Contact EduWarn Nepal for free learning support, study resources, and practical education guidance." />
+        <title>Contact EduWarn Nepal | Free Learning Support & Online Tuition Inquiry</title>
+        <meta name="description" content="Contact EduWarn Nepal for free learning support, home tuition inquiry, course guidance, or questions about our online education platform." />
       </Helmet>
       <Navbar />
       <div className="bg-primary text-white py-12">
