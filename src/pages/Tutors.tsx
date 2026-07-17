@@ -150,7 +150,7 @@ const Tutors = () => {
               <p className="text-muted-foreground mb-6">
                 Are you an experienced educator passionate about helping students succeed? We're always looking for talented tutors to join our team.
               </p>
-              <button className="btn-primary" onClick={() => navigate('/contact?subject=Tutor+Application')}>Apply as a Tutor</button>
+              <button className="btn-primary" onClick={() => navigate('/TutorApplication')}>Apply as a Tutor</button>
             </div>
           </div>
         </div>
